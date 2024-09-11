@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "c2c-search"
+version = "0.1.0"
+description = ""
+authors = ["Nicolas Ngomai <nicolas.ngomai@gmail.com>"]
+readme = "README.md"
+packages = [{include = "c2c_search"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pinecone-client = "^5.0.1"
+sentence-transformers = "^3.0.1"
+numpy = "^2.1.1"
+requests = "^2.32.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+data-loader = "c2c_data_loader:main"

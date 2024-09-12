@@ -33,7 +33,7 @@ def format_document(document: Dict) -> CamptocampDocument:
         id=str(document["document_id"]),
         title=fr_locale["title"] if fr_locale != None else "",
         summary=fr_locale.get("summary", "") if fr_locale != None else "",
-        elevation_max=document.get("elevation_max", "") or "",
+        elevation_max=str(document.get("elevation_max", "")) or "",
         global_rating=document.get("global_rating", "") or "",
         rock_free_rating=document.get("rock_free_rating", "") or "",
         activities=document.get("activities", []) or [],

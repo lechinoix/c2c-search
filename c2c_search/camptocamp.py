@@ -28,11 +28,13 @@ def fetch_camptocamp_data(limit: int = 30) -> List[CamptocampDocument]:
 
 def format_document(document: Dict) -> CamptocampDocument:
     fr_locale = next((loc for loc in document["locales"] if loc["lang"] == "fr"), None)
+    title = fr_locale["title"] if fr_locale != None else ""
+    summary = fr_locale.get("summary", "") if fr_locale != None else ""
 
     return CamptocampDocument(
         id=str(document["document_id"]),
-        title=fr_locale["title"] if fr_locale != None else "",
-        summary=fr_locale.get("summary", "") if fr_locale != None else "",
+        title=title or "",
+        summary=summary or "",
         elevation_max=str(document.get("elevation_max", "")) or "",
         global_rating=document.get("global_rating", "") or "",
         rock_free_rating=document.get("rock_free_rating", "") or "",

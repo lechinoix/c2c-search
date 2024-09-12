@@ -1,6 +1,4 @@
 from pinecone import Pinecone
-from sentence_transformers import SentenceTransformer
-from pinecone import Pinecone
 from typing import List
 from sentence_transformers import SentenceTransformer
 

@@ -125,6 +125,20 @@ files = [
 ]
 
 [[package]]
+name = "dacite"
+version = "1.8.1"
+description = "Simple creation of data classes from dictionaries."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "dacite-1.8.1-py3-none-any.whl", hash = "sha256:cc31ad6fdea1f49962ea42db9421772afe01ac5442380d9a99fcf3d188c61afe"},
+]
+
+[package.extras]
+dev = ["black", "coveralls", "mypy", "pre-commit", "pylint", "pytest (>=5)", "pytest-benchmark", "pytest-cov"]
+
+[[package]]
 name = "filelock"
 version = "3.16.0"
 description = "A platform independent file lock."
@@ -1547,4 +1561,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "32da6c5535cc75288d9c0af8e9e973b4818b7ba281f2e86ae8bce4a07f68cfbb"
+content-hash = "67feb61a3117bd4bead1648a9f0ff91cc01e8a9f71ae8deda3db76d7bf3d7cc1"

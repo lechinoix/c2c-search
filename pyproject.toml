@@ -12,6 +12,7 @@ pinecone-client = "^5.0.1"
 sentence-transformers = "^3.0.1"
 numpy = "^2.1.1"
 requests = "^2.32.3"
+dacite = "^1.8.1"
 
 
 [build-system]
@@ -21,5 +22,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 update-data = "c2c_search:update_raw_data"
-update-index = "c2c_data_loader:update_index"
+update-index = "c2c_search:update_index"
 search = "c2c_search:search"

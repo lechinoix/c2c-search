@@ -16,7 +16,6 @@ def to_index(camptocamp_document: CamptocampDocument) -> IndexEntry:
 
     # Generate embedding
     embedding = model.encode([text_to_embed])[0].tolist()
-    print(f"Document {doc_id} encoded")
 
     # Create metadata
     metadata = {

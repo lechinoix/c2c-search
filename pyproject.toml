@@ -20,4 +20,6 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry.scripts]
-data-loader = "c2c_data_loader:main"
+update-data = "c2c_search:update_raw_data"
+update-index = "c2c_data_loader:update_index"
+search = "c2c_search:search"

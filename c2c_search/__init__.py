@@ -5,9 +5,11 @@ from tqdm import tqdm
 from dacite import from_dict
 
 from c2c_search.camptocamp import fetch_camptocamp_data
-from c2c_search.config import DATA_FILE_PATH
 from c2c_search.pinecone import search_courses, to_index, upload_to_pinecone
 from c2c_search.types import CamptocampDocument
+
+BATCH_SIZE = 20
+DATA_FILE_PATH = "camptocamp_data.json"
 
 
 def load_json_data(file_path):
@@ -30,22 +32,22 @@ def update_raw_data():
         )
 
 
-def update_index(batch_size=100):
+def update_index(batch_size=BATCH_SIZE):
     print("Loading data from file...")
     camptocamp_documents = load_json_data(DATA_FILE_PATH)
     total_batches = math.ceil(len(camptocamp_documents) / batch_size)
 
     print("Starting index update...")
-    index_entries = [
-        to_index(from_dict(data_class=CamptocampDocument, data=document))
-        for document in camptocamp_documents
-    ]
 
     # Upload data in batches
-    for i in tqdm(range(0, len(index_entries), batch_size)):
+    for i in tqdm(range(0, len(camptocamp_documents), batch_size)):
         print(f"Loading batch {i}/{total_batches}")
         batch = camptocamp_documents[i : i + batch_size]
-        upload_to_pinecone(batch)
+        index_entries = [
+            to_index(from_dict(data_class=CamptocampDocument, data=document))
+            for document in batch
+        ]
+        upload_to_pinecone(index_entries)
 
 
 def search():

@@ -2,11 +2,11 @@ from pinecone import Pinecone
 from typing import List
 from sentence_transformers import SentenceTransformer
 
-from c2c_search.config import INDEX_NAME
 from c2c_search.types import CamptocampDocument, IndexEntry
 
 pc = Pinecone(api_key="fake")
 model = SentenceTransformer("all-mpnet-base-v2")
+INDEX_NAME = "camptocamp"
 
 
 def to_index(camptocamp_document: CamptocampDocument) -> IndexEntry:
@@ -30,6 +30,7 @@ def to_index(camptocamp_document: CamptocampDocument) -> IndexEntry:
 
     return IndexEntry(id=str(doc_id), values=embedding, metadata=metadata)
 
+
 def upload_to_pinecone(index_entries: List[IndexEntry], index_name=INDEX_NAME):
     index = pc.Index(index_name)
     to_upsert = [(entry.id, entry.values, entry.metadata) for entry in index_entries]
@@ -48,4 +49,3 @@ def search_courses(query, index_name=INDEX_NAME, top_k=5):
     )
 
     return results
-

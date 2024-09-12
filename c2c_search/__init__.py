@@ -1,3 +1,4 @@
+import dataclasses
 import math
 import json
 from tqdm import tqdm
@@ -19,7 +20,12 @@ def update_raw_data():
 
     print("Saving camptocamp data to file...")
     with open(DATA_FILE_PATH, "w", encoding="utf-8") as f:
-        json.dump(camptocamp_documents, f, ensure_ascii=False, indent=2)
+        json.dump(
+            [dataclasses.asdict(doc) for doc in camptocamp_documents],
+            f,
+            ensure_ascii=False,
+            indent=2,
+        )
 
 
 def update_index(batch_size=100):

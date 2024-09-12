@@ -55,3 +55,7 @@ def search():
     print(f"Search query: '{search_query}'\n")
     print("Natural language response:")
     print(results)
+
+
+def debug():
+    print("Use this for debug")

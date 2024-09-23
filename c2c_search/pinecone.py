@@ -2,9 +2,11 @@ from pinecone import Pinecone
 from typing import List
 from sentence_transformers import SentenceTransformer
 
+
+from c2c_search.config import PINECONE_API_KEY
 from c2c_search.types import CamptocampDocument, IndexEntry
 
-pc = Pinecone(api_key="fake")
+pc = Pinecone(api_key=PINECONE_API_KEY)
 model = SentenceTransformer("all-mpnet-base-v2")
 INDEX_NAME = "camptocamp"
 
